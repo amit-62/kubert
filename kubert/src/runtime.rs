@@ -93,7 +93,9 @@ pub enum BuildError {
 
 #[derive(Debug)]
 struct LogSettings {
+    #[allow(dead_code)]
     filter: LogFilter,
+    #[allow(dead_code)]
     format: LogFormat,
 }
 
@@ -128,7 +130,7 @@ impl<S> Builder<S> {
 
     #[inline]
     async fn build_inner(self) -> Result<Runtime<S>, BuildError> {
-        #[cfg(feature = "log")]
+        #[cfg(feature = "log-subscriber")]
         self.log.unwrap_or_default().try_init()?;
         let client = self.client.unwrap_or_default().try_client().await?;
         let (shutdown, shutdown_rx) = shutdown::sigint_or_sigterm()?;
@@ -531,6 +533,7 @@ impl Default for LogSettings {
 }
 
 impl LogSettings {
+    #[allow(dead_code)]
     fn try_init(self) -> Result<(), LogInitError> {
         self.format.try_init(self.filter)
     }

@@ -50,6 +50,7 @@ lease = [
     "tracing",
 ]
 log = ["thiserror", "tracing", "tracing-subscriber"]
+log-subscriber = []
 metrics = ["deflate", "metrics-exporter-prometheus", "metrics-process"]
 requeue = [
     "futures-core",
